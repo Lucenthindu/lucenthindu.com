@@ -1,0 +1,155 @@
+
+---
+import '../styles/global.css';
+
+// 🔥 SEO Props Accept karo
+export interface Props {
+  title?: string;
+  description?: string;
+}
+
+const { title = "LucentHindu — Bhāratīya Systems Architecture", description = "Systems consulting for digital presence, knowledge, and business operations. Rooted in Bharatiya principles." } = Astro.props;
+---
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    
+    <!-- 🔥 DYNAMIC SEO TITLE & DESCRIPTION -->
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    
+    <!-- 🔥 OPEN GRAPH (Social Media Sharing) -->
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://lucenthindu.vercel.app" />
+    <meta name="twitter:card" content="summary_large_image" />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Inter:wght@300;400;500;600&family=IBM+Plex+Mono:wght@400;600&display=swap" rel="stylesheet" />
+</head>
+<body>
+    <!-- Body Code same rahega --->
+<body>
+    <div class="container">
+        <!-- HEADER -->
+        <header class="site-header">
+            <a href="/" class="logo">Lucent<span>Hindu</span></a>
+            <nav class="nav" role="navigation">
+                <div class="nav-item">
+                    <a href="/">Home</a>
+                </div>
+                <div class="nav-item" id="workWithAmanNav">
+                    <a href="#" id="workWithAmanLink">
+                        Work With Aman
+                        <span class="caret" id="caretIcon">▾</span>
+                    </a>
+                    <div class="dropdown" id="dropdownMenu">
+                        <a href="/work-with-aman/systems-audit">Systems Audit</a>
+                        <a href="/work-with-aman/digital-presence">Digital Presence Systems</a>
+                        <a href="/work-with-aman/knowledge-systems">Knowledge Systems</a>
+                        <a href="/work-with-aman/business-systems">Business Systems &amp; Automation</a>
+                        <div class="divider"></div>
+                        <a href="/work-with-aman" class="view-all">View All Services →</a>
+                    </div>
+                </div>
+            </nav>
+        </header>
+    </div>
+
+    <!-- MAIN CONTENT -->
+    <main>
+        <slot />
+    </main>
+
+    <!-- FOOTER -->
+    <div class="container">
+        <footer class="site-footer">
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <span style="font-family: 'Cormorant Garamond', serif; font-size: 1.6rem; font-weight: 700; color: var(--text);">Lucent<span style="color: var(--accent);">Hindu</span></span>
+                    <p style="margin-top: 0.3rem;">Decode Systems. Understand Reality.</p>
+                    <p style="font-size: 0.8rem; color: var(--accent); opacity: 0.6; font-style: italic; font-family: 'Cormorant Garamond', serif;">॥ सत्यम् शिवम् सुन्दरम् ॥</p>
+                </div>
+                <div class="footer-col">
+                    <h4>About</h4>
+                    <ul>
+                        <li><a href="/about">About</a></li>
+                        <li><a href="/my-journey">My Journey</a></li>
+                        <li><a href="/professional-background">Professional Background</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Services</h4>
+                    <ul>
+                        <li><a href="/work-with-aman/systems-audit">Systems Audit</a></li>
+                        <li><a href="/work-with-aman/digital-presence">Digital Presence Systems</a></li>
+                        <li><a href="/work-with-aman/knowledge-systems">Knowledge Systems</a></li>
+                        <li><a href="/work-with-aman/business-systems">Business Systems &amp; Automation</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Legal</h4>
+                    <ul>
+                        <li><a href="/privacy">Privacy Policy</a></li>
+                        <li><a href="/terms">Terms &amp; Conditions</a></li>
+                    </ul>
+                    <p style="font-size: 0.8rem; color: var(--text-muted); margin-top: 0.5rem;">Bhārat · 2026</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <div>© 2026 LucentHindu. All Rights Reserved.</div>
+                <div class="tagline">Clarity Before Action.</div>
+                <div class="dharma">॥ वसुधैव कुटुम्बकम् ॥</div>
+            </div>
+        </footer>
+    </div>
+
+    <!-- MOBILE NAV JAVASCRIPT -->
+    <script>
+        (function() {
+            'use strict';
+            const navItem = document.getElementById('workWithAmanNav');
+            const navLink = document.getElementById('workWithAmanLink');
+            const caret = document.getElementById('caretIcon');
+
+            let clickTimer = null;
+            let isDoubleClick = false;
+
+            if (navLink) {
+                navLink.addEventListener('click', function(e) {
+                    if (clickTimer) {
+                        clearTimeout(clickTimer);
+                        clickTimer = null;
+                        isDoubleClick = true;
+                        window.location.href = '/work-with-aman';
+                        e.preventDefault();
+                        e.stopPropagation();
+                        return;
+                    }
+                    clickTimer = setTimeout(function() {
+                        clickTimer = null;
+                        if (!isDoubleClick) {
+                            const isOpen = navItem.classList.toggle('open');
+                            if (caret) caret.classList.toggle('open', isOpen);
+                            e.preventDefault();
+                        }
+                        isDoubleClick = false;
+                    }, 300);
+                    e.preventDefault();
+                });
+            }
+            document.addEventListener('click', function(e) {
+                if (navItem && !navItem.contains(e.target)) {
+                    navItem.classList.remove('open');
+                    if (caret) caret.classList.remove('open');
+                }
+            });
+        })();
+    </script>
+</body>
+</html>
