@@ -1,9 +1,6 @@
-
 ---
 import '../styles/global.css';
----
 
-// 🔥 SEO Props Accept karo
 export interface Props {
   title?: string;
   description?: string;
@@ -18,11 +15,9 @@ const { title = "LucentHindu — Bhāratīya Systems Architecture", description 
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
     
-    <!-- 🔥 DYNAMIC SEO TITLE & DESCRIPTION -->
     <title>{title}</title>
     <meta name="description" content={description} />
     
-    <!-- 🔥 OPEN GRAPH (Social Media Sharing) -->
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
     <meta property="og:type" content="website" />
@@ -34,10 +29,7 @@ const { title = "LucentHindu — Bhāratīya Systems Architecture", description 
     <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Inter:wght@300;400;500;600&family=IBM+Plex+Mono:wght@400;600&display=swap" rel="stylesheet" />
 </head>
 <body>
-    
-
     <div class="container">
-        <!-- HEADER -->
         <header class="site-header">
             <a href="/" class="logo">Lucent<span>Hindu</span></a>
             <nav class="nav" role="navigation">
@@ -62,12 +54,10 @@ const { title = "LucentHindu — Bhāratīya Systems Architecture", description 
         </header>
     </div>
 
-    <!-- MAIN CONTENT -->
     <main>
         <slot />
     </main>
 
-    <!-- FOOTER -->
     <div class="container">
         <footer class="site-footer">
             <div class="footer-grid">
@@ -110,7 +100,6 @@ const { title = "LucentHindu — Bhāratīya Systems Architecture", description 
         </footer>
     </div>
 
-    <!-- MOBILE NAV JAVASCRIPT -->
     <script>
         (function() {
             'use strict';
@@ -152,6 +141,5 @@ const { title = "LucentHindu — Bhāratīya Systems Architecture", description 
             });
         })();
     </script>
-
 </body>
 </html>
